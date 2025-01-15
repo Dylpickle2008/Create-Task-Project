@@ -1,0 +1,21 @@
+.title-container{
+    
+}
+
+.outer-container{
+    display: flex; 
+    background-color: gray; 
+    position: absolute; 
+    justify-content: center; 
+    align-items: center;
+    width: 100%; 
+    height: 100%;  
+}
+
+.inner-container{
+    display: flex; 
+    background-color: bisque;
+    width: 100%;
+    height: 100px; 
+    flex-direction: row; 
+}
