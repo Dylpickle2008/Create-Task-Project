@@ -1,21 +1,36 @@
+h3{
+    margin: 20px auto; 
+    font-size: 30px; 
+}
+
+
 .title-container{
-    
+    display: flex; 
+    flex-direction: row;
+    color: white; 
+    background-color: black;
+    height: 100px; 
+    width: 100%;
+    left: 20%;
+    padding: 8px;
 }
 
 .outer-container{
     display: flex; 
-    background-color: gray; 
+    background-color: darkred; 
     position: absolute; 
     justify-content: center; 
     align-items: center;
     width: 100%; 
-    height: 100%;  
+    height: 90%;  
+    margin-top: 5%;
+    top: 0%; 
 }
 
 .inner-container{
     display: flex; 
     background-color: bisque;
     width: 100%;
-    height: 100px; 
+    height: 400px; 
     flex-direction: row; 
 }
