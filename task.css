@@ -4,7 +4,7 @@
     color: white; 
     flex-direction: column; 
     text-align: center;
-    margin-bottom: 10px;
+    border: 2px solid white; 
     font-family: 'Times New Roman', 'Times', 'serif'
 }
 
@@ -50,4 +50,16 @@ h1{
     display: flex; 
     padding-bottom: 20px; 
     align-items: center; 
+}
+
+button{
+    opacity: 1;
+}
+
+button:hover{
+    opacity: 0.8;
+    transition-duration: 0.4s;
+    color: white;
+    background-color: black;
+    border: 0.5px solid white; 
 }
