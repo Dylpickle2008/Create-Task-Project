@@ -3,9 +3,9 @@ const leftButton = document.querySelector('.leftbutton');
 const rightButton = document.querySelector('.rightbutton');
 const submitButton = document.querySelector('.submit');
 let counter = document.querySelector('#counter');
-const addWord = document.querySelector('.add-word');
+let addWord = document.querySelector('.add-word');
 let mirror = document.querySelector('.mirror');
-let words = ['volcano', 'aa', 'aal', 'aalii', 'aaliis', 'aals', 'aas', 'acari', 'acarine', 'acarines', 'acarpellous', 'acarpelous', 'acarpous',]
+let words = ['volcano', 'aa', 'aal', 'aalii', 'aaliis', 'aals', 'aas', 'acari', 'acarine', 'acarines', 'acarpellous', 'acarpelous', 'acarpous']
 let currentIndex = -1; 
 
 
@@ -13,9 +13,9 @@ document.querySelector('.submit').addEventListener('click', function() {
     let mirrorText = document.querySelector('.add-word').value;
     words.push(mirrorText);
     console.log(words);
-    let newMirror = document.createElement('div');
-    newMirror.className = 'mirror';
-    newMirror.innerHTML = `<h3>${mirrorText}</h3>`;
+    let newWords = document.createElement('div');
+    newWords.className = 'mirror';
+    newWords.innerHTML = `<h3>${addWord}</h3>`;
     document.querySelector('mirror-input').value = "";
 });
 
