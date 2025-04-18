@@ -1,65 +1,70 @@
-.title-container{
+.background{
     display: flex; 
-    background-color: black;
-    color: white; 
-    flex-direction: column; 
-    text-align: center;
-    border: 2px solid white; 
-    font-family: 'Times New Roman', 'Times', 'serif'
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 100vh;
+    background-image: url("https://t3.ftcdn.net/jpg/00/88/27/48/360_F_88274870_YcJcWWd7lZtcy6jQqDlJ0ErTgAGTdsp1.jpg");
+    background-size: cover; 
+    background-position: center;  
 }
 
-img{
-    padding-left: 40%;
-    padding-bottom: 2%;  
-    padding-top: 1%;
-    width: 300px; 
-    height: 200px; 
-}
-
-h1{
-    color: red; 
-}
-
-.display-case{
-    display: flex; 
-    background-color: black;
-    color: red; 
-    width: 100%;
-    flex-direction: column; 
-    align-items: center; 
-}
-
-.input-container{
-    display: flex;  
-    padding-bottom: 30px; 
-}
-
-.button-container{
+.card{
     display: flex;
-    flex-direction: row; 
-    padding-bottom: 20px; 
-
-}
-
-.right-button{
-    padding-left: 20px; 
-    padding-right: 10px; 
-}
-
-.submit-container{
-    display: flex; 
-    padding-bottom: 20px; 
+    flex-direction: column;
     align-items: center; 
+    border: 5px solid black;
+    width: 400px;
+    height: 600px;;
+    background-color: peachpuff;
+    color: black; 
+    opacity: 0.8
 }
 
-button{
+.card:hover{
     opacity: 1;
 }
 
-button:hover{
-    opacity: 0.8;
-    transition-duration: 0.4s;
-    color: white;
-    background-color: black;
-    border: 0.5px solid white; 
+.description{
+    padding-bottom: 40px; 
+    text-align: center; 
+}
+
+.title-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px; 
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+.button-container{
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+}
+
+.button:hover{
+    color: red; 
+}
+
+
+.score-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.question-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }

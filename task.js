@@ -1,37 +1,58 @@
-let submitContainer = document.querySelector('submit-container');
-const leftButton = document.querySelector('.leftbutton'); 
-const rightButton = document.querySelector('.rightbutton');
-const submitButton = document.querySelector('.submit');
-let counter = document.querySelector('#counter');
-let addWord = document.querySelector('.add-word');
-let mirror = document.querySelector('.mirror');
-let words = ['volcano', 'aa', 'aal', 'aalii', 'aaliis', 'aals', 'aas', 'acari', 'acarine', 'acarines', 'acarpellous', 'acarpelous', 'acarpous']
-let currentIndex = -1; 
+///The list of All US State Abbreviations and a second list with their corresponding capital cities
+///Variables: the score, question index (number), and # of user clicks (attempts) are defined
+
+let questionList = ['AL', 'AK', 'AZ', 'AR', 'AS', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY' ];
+let answerList = ['Montgomery', 'Juneau', 'Phoenix', 'Little Rock', 'Sacramento', 'Denver', 'Hartford', 'Dover', 'Tallahassee', 'Atlanta', 'Honolulu', 'Boise', 'Springfield', 'Indianapolis', 'Des Moines', 'Topeka', 'Frankfort', 'Baton Rouge', 'Augusta', 'Annapolis', 'Boston', 'Lansing', 'St. Paul', 'Jackson', 'Jefferson City', 'Helena', 'Lincoln', 'Carson City', 'Concord', 'Trenton', 'Santa Fe', 'Albany', 'Raleigh', 'Bismarck', 'Columbus', 'Oklahoma City', 'Salem', 'Harrisburg', 'Providence', 'Columbia', 'Pierre', 'Nashville', 'Austin', 'Salt Lake City', 'Montpelier', 'Richmond', 'Olympia', 'Charleston', 'Madison', 'Cheyenne' ];
+let score = 0;
+let questionIndex = 0;
+let userClicks = 0;
+
+///defines HTML elements as usable javascript elements 
+
+const question = document.querySelector('.question-container');
+const button = document.querySelector('.button-container');
+const input = document.querySelector('#input-field');
+let scoreContainer = document.querySelector('.score-container');
 
 
-document.querySelector('.submit').addEventListener('click', function() {
-    let mirrorText = document.querySelector('.add-word').value;
-    words.push(mirrorText);
-    console.log(words);
-    let newWords = document.createElement('div');
-    newWords.className = 'mirror';
-    newWords.innerHTML = `<h3>${addWord}</h3>`;
-    document.querySelector('mirror-input').value = "";
-});
+///Displays the item from the question list in the question-container as the index
+
+console.log(question); 
+question.textContent = questionList[questionIndex];
 
 
-leftButton.addEventListener('click', function() { 
-    if (currentIndex > 0) {
-        currentIndex--;
-        updateMirror();
-        updateCounter();
+///Function with parameters that accepts user input and displays the output
+///if the player input matches the corresponding list item in the answer list (the correct answer for each question)
+///increase the score by 1 and go to the next question (incr. question index), while resetting incorrect attempts to zero
+///if it doesn't match, decrease the score by 1 and increase the attempts by 1, while displaying the updated score
+
+function submitAnswer(userClicks) {
+    button.addEventListener('click', () =>{
+        if(input.value === answerList[questionIndex]){
+            questionIndex += 1;
+            score += 1;
+            question.textContent = questionList[questionIndex];
+            scoreContainer.textContent = "Score: " + score;
+            userClicks = 0;
+        } else{
+            score -= 1;
+            scoreContainer.textContent = "Score: " + score; 
+            userClicks += 1;
+        }
+        endGame(); 
+    });
+}
+
+
+///Iteration called by the submit function:
+///Once the player answers all 50 questions or after 4 consecutive incorrect guesses, the end game function is triggered, 
+/// displaying a thank you for playing message on screen
+
+function endGame() {
+    if(questionIndex > 50 || userClicks > 4){
+        scoreContainer.textContent = "Final Score: " + score; 
+        question.textContent = "Congratulations: play again!";
+        input.style.display = "none";
+        button.style.display = "none";
     }
-});
-
-rightButton.addEventListener('click', function() { 
-    if (currentIndex < reminders.length - 1) {
-        currentIndex++;
-        updateMirror();
-        updateCounter();
-    }
-});
+};
