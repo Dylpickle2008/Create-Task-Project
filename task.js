@@ -1,11 +1,11 @@
 ///The list of All US State Abbreviations and a second list with their corresponding capital cities
-///Variables: the score, question index (number), and # of user clicks (attempts) are defined
+///Variables: the score, question index (number), and # of lives (user attempts) are defined
 
-let questionList = ['AL', 'AK', 'AZ', 'AR', 'AS', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY' ];
+let questionList = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY' ];
 let answerList = ['Montgomery', 'Juneau', 'Phoenix', 'Little Rock', 'Sacramento', 'Denver', 'Hartford', 'Dover', 'Tallahassee', 'Atlanta', 'Honolulu', 'Boise', 'Springfield', 'Indianapolis', 'Des Moines', 'Topeka', 'Frankfort', 'Baton Rouge', 'Augusta', 'Annapolis', 'Boston', 'Lansing', 'St. Paul', 'Jackson', 'Jefferson City', 'Helena', 'Lincoln', 'Carson City', 'Concord', 'Trenton', 'Santa Fe', 'Albany', 'Raleigh', 'Bismarck', 'Columbus', 'Oklahoma City', 'Salem', 'Harrisburg', 'Providence', 'Columbia', 'Pierre', 'Nashville', 'Austin', 'Salt Lake City', 'Montpelier', 'Richmond', 'Olympia', 'Charleston', 'Madison', 'Cheyenne' ];
 let score = 0;
 let questionIndex = 0;
-let userClicks = 0;
+let lives = 0;
 
 ///defines HTML elements as usable javascript elements 
 
@@ -26,18 +26,17 @@ question.textContent = questionList[questionIndex];
 ///increase the score by 1 and go to the next question (incr. question index), while resetting incorrect attempts to zero
 ///if it doesn't match, decrease the score by 1 and increase the attempts by 1, while displaying the updated score
 
-function submitAnswer(userClicks) {
+let submitAnswer = () =>{
     button.addEventListener('click', () =>{
         if(input.value === answerList[questionIndex]){
             questionIndex += 1;
             score += 1;
             question.textContent = questionList[questionIndex];
             scoreContainer.textContent = "Score: " + score;
-            userClicks = 0;
         } else{
             score -= 1;
             scoreContainer.textContent = "Score: " + score; 
-            userClicks += 1;
+            lives += 1;
         }
         endGame(); 
     });
@@ -45,14 +44,16 @@ function submitAnswer(userClicks) {
 
 
 ///Iteration called by the submit function:
-///Once the player answers all 50 questions or after 4 consecutive incorrect guesses, the end game function is triggered, 
+///Once the player answers all 50 questions or after 8 total incorrect guesses, the end game function is triggered, 
 /// displaying a thank you for playing message on screen
 
-function endGame() {
-    if(questionIndex > 50 || userClicks > 4){
+let endGame = () =>{
+    if(questionIndex > 50|| lives > 8){
         scoreContainer.textContent = "Final Score: " + score; 
         question.textContent = "Congratulations: play again!";
         input.style.display = "none";
         button.style.display = "none";
     }
 };
+
+submitAnswer();
