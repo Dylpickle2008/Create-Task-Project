@@ -26,16 +26,16 @@ question.textContent = questionList[questionIndex];
 ///increase the score by 1 and go to the next question (incr. question index), while resetting incorrect attempts to zero
 ///if it doesn't match, decrease the score by 1 and increase the attempts by 1, while displaying the updated score
 
-let submitAnswer = () =>{
+function submitAnswer (points) {
     button.addEventListener('click', () =>{
         if(input.value === answerList[questionIndex]){
             questionIndex += 1;
-            score += 1;
+            points += 1;
             question.textContent = questionList[questionIndex];
-            scoreContainer.textContent = "Score: " + score;
+            scoreContainer.textContent = "Score: " + points;
         } else{
-            score -= 1;
-            scoreContainer.textContent = "Score: " + score; 
+            points -= 1;
+            scoreContainer.textContent = "Score: " + points; 
             lives += 1;
         }
         endGame(); 
@@ -47,7 +47,7 @@ let submitAnswer = () =>{
 ///Once the player answers all 50 questions or after 8 total incorrect guesses, the end game function is triggered, 
 /// displaying a thank you for playing message on screen
 
-let endGame = () =>{
+function endGame () {
     if(questionIndex > 50|| lives > 8){
         scoreContainer.textContent = "Final Score: " + score; 
         question.textContent = "Congratulations: play again!";
@@ -56,4 +56,4 @@ let endGame = () =>{
     }
 };
 
-submitAnswer();
+submitAnswer(score);
