@@ -1,30 +1,16 @@
-///The list of All US State Abbreviations and a second list with their corresponding capital cities
-///Variables: the score, question index (number), and # of lives (user attempts) are defined
-
 let questionList = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY' ];
 let answerList = ['Montgomery', 'Juneau', 'Phoenix', 'Little Rock', 'Sacramento', 'Denver', 'Hartford', 'Dover', 'Tallahassee', 'Atlanta', 'Honolulu', 'Boise', 'Springfield', 'Indianapolis', 'Des Moines', 'Topeka', 'Frankfort', 'Baton Rouge', 'Augusta', 'Annapolis', 'Boston', 'Lansing', 'St. Paul', 'Jackson', 'Jefferson City', 'Helena', 'Lincoln', 'Carson City', 'Concord', 'Trenton', 'Santa Fe', 'Albany', 'Raleigh', 'Bismarck', 'Columbus', 'Oklahoma City', 'Salem', 'Harrisburg', 'Providence', 'Columbia', 'Pierre', 'Nashville', 'Austin', 'Salt Lake City', 'Montpelier', 'Richmond', 'Olympia', 'Charleston', 'Madison', 'Cheyenne' ];
 let score = 0;
 let questionIndex = 0;
-let lives = 0;
-
-///defines HTML elements as usable javascript containers 
+let lives = 8;
 
 const question = document.querySelector('.question-container');
 const button = document.querySelector('.button-container');
 const input = document.querySelector('#input-field');
 let scoreContainer = document.querySelector('.score-container');
 
-
-///Displays the item from the question list in the question-container as the index
-
 console.log(question); 
 question.textContent = questionList[questionIndex];
-
-
-///reassigns the score variable as points as the parameter, being passed down into the submit function
-///Function with a parameter that accepts the user input and displays the output
-///if the player input matches the corresponding list item in the answer list (the correct answer for each question), increase the points by 1 and go to the next question (incr. question index)
-///if it doesn't match, decrease the score by 1 and increase the mistakes (lives) by 1, while displaying the updated score
 
 function submitAnswer (points) {
     button.addEventListener('click', () =>{
@@ -36,18 +22,14 @@ function submitAnswer (points) {
         } else{
             points -= 1;
             scoreContainer.textContent = "Score: " + points; 
-            lives += 1;
+            lives -= 1;
         }
         endGame(points); 
     });
 }
 
-
-///Iteration called by the submit function:
-///Once the player answers all 50 questions or after 8 total incorrect guesses, the end game function is triggered, displaying a thank you for playing message on screen as well as the user points (score)
-
 function endGame (points) {
-    if(questionIndex > 50|| lives > 8){
+    if(questionIndex > 50|| lives < 1){
         scoreContainer.textContent = "Final Score: " + points; 
         question.textContent = "Congratulations: play again!";
         input.style.display = "none";
@@ -55,5 +37,4 @@ function endGame (points) {
     }
 };
 
-///Variable score is passed down when the function is called
 submitAnswer(score);
