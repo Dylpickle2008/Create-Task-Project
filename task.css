@@ -21,10 +21,6 @@
     opacity: 0.8
 }
 
-.card:hover{
-    opacity: 1;
-}
-
 .description{
     padding-bottom: 40px; 
     text-align: center; 
@@ -46,6 +42,7 @@
 
 .button:hover{
     color: red; 
+    opacity: 1;
 }
 
 

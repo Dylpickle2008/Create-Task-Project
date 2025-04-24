@@ -7,7 +7,7 @@ let score = 0;
 let questionIndex = 0;
 let lives = 0;
 
-///defines HTML elements as usable javascript elements 
+///defines HTML elements as usable javascript containers 
 
 const question = document.querySelector('.question-container');
 const button = document.querySelector('.button-container');
@@ -21,10 +21,10 @@ console.log(question);
 question.textContent = questionList[questionIndex];
 
 
-///Function with parameters that accepts user input and displays the output
-///if the player input matches the corresponding list item in the answer list (the correct answer for each question)
-///increase the score by 1 and go to the next question (incr. question index), while resetting incorrect attempts to zero
-///if it doesn't match, decrease the score by 1 and increase the attempts by 1, while displaying the updated score
+///reassigns the score variable as points as the parameter, being passed down into the submit function
+///Function with a parameter that accepts the user input and displays the output
+///if the player input matches the corresponding list item in the answer list (the correct answer for each question), increase the points by 1 and go to the next question (incr. question index)
+///if it doesn't match, decrease the score by 1 and increase the mistakes (lives) by 1, while displaying the updated score
 
 function submitAnswer (points) {
     button.addEventListener('click', () =>{
@@ -38,22 +38,22 @@ function submitAnswer (points) {
             scoreContainer.textContent = "Score: " + points; 
             lives += 1;
         }
-        endGame(); 
+        endGame(points); 
     });
 }
 
 
 ///Iteration called by the submit function:
-///Once the player answers all 50 questions or after 8 total incorrect guesses, the end game function is triggered, 
-/// displaying a thank you for playing message on screen
+///Once the player answers all 50 questions or after 8 total incorrect guesses, the end game function is triggered, displaying a thank you for playing message on screen as well as the user points (score)
 
-function endGame () {
+function endGame (points) {
     if(questionIndex > 50|| lives > 8){
-        scoreContainer.textContent = "Final Score: " + score; 
+        scoreContainer.textContent = "Final Score: " + points; 
         question.textContent = "Congratulations: play again!";
         input.style.display = "none";
         button.style.display = "none";
     }
 };
 
+///Variable score is passed down when the function is called
 submitAnswer(score);
